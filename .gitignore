@@ -1,5 +1,4 @@
 out
-dist
 node_modules
 .vscode-test/
 *.vsix
@@ -13,3 +12,4 @@ node_modules
 
 # Local History for Visual Studio Code
 .history/
+sample/

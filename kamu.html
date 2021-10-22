@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!--
+    Use a content security policy to only allow loading images from https or from our extension directory,
+    and only allow scripts that have a specific nonce.
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src https://*.vscode-webview.net blob:; style-src https://*.vscode-webview.net; script-src 'nonce-VwChlUOh0Otq0I5ZqHFS5yufyIQz4F0k';">
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="media/style.min.css" rel="stylesheet" />
+    <title>Raw Content</title>
+</head>
+<body>
+    <div id="tree"></div>
+    
+    <script >
+        //import { VanillaTreeView } from 'media/treeview.vanilla.js';
+        document.write('VS CODE1');	
+
+        /*try {
+            document.write('VS CODE1');	
+        } catch {
+            notesContainer.style.display = 'none';
+            errorContainer.innerText = 'Error: Document is not valid json';
+            errorContainer.style.display = '';
+            document.write('ERRORR');	
+        }*/
+        
+        document.write('VS CODE2');
+    /*let tree = new VanillaTreeView(document.getElementById('tree'), {
+        provider: {
+            async getChildren(id) {
+                if (!id) {
+                    return [
+                        { id: 'p1', label: 'Parent #1', icon: { classes: ['far', 'fa-folder'] }, state: 'collapsed' },
+                        { id: 'p2', label: 'Parent #2', icon: { classes: ['far', 'fa-folder'] }, state: 'expanded' }
+                    ];
+                } else {
+                    await new Promise((resolve, reject) => setTimeout(resolve, 1000));
+                    switch (id) {
+                        case 'p1':
+                            return [
+                                { id: 'c1', label: 'Child #1', icon: { classes: ['far', 'fa-file'] }, state: 'collapsed' },
+                                { id: 'c2', label: 'Child #2', icon: { classes: ['far', 'fa-file'] } }
+                            ];
+                        case 'p2':
+                            return [
+                                { id: 'c3', label: 'Child #3', icon: { src: '/examples/thumbs-up.png' } },
+                                { id: 'c4', label: 'Child #4', icon: { classes: ['far', 'fa-file'] } }
+                            ];
+                        case 'c1':
+                            return [
+                                { id: 'g1', label: 'Grandchild #1', icon: { classes: ['far', 'fa-clock'] } }
+                            ];
+                        default:
+                            return [];
+                    }
+                }
+            }
+        }
+    });*/
+</script>
+
+<script > document.write('csoszme')</script>	
+
+</body>
+</html>
