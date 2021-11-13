@@ -2,7 +2,6 @@ import { promisify, TextDecoder } from "util";
 import * as vscode from "vscode";
 import { Disposable } from "vscode";
 import { getNonce } from './util';
-import Ableton from './abletonTracks';
 import AbletonParser from "./abletonParser";
 const fs = require("fs");
 
@@ -29,46 +28,47 @@ class AlsDocument extends Disposable implements vscode.CustomDocument {
 		const simpleTreeStyleUri = webview.asWebviewUri(vscode.Uri.joinPath(
 		context.extensionUri, 'media', 'simpleTree.css'));		
 
-	const nonce = getNonce();
-	const xmlData = (await this.readFile(uri)).toString();
-	var ableton = AbletonParser.parse(xmlData);
+    const nonce = getNonce();
+    const xmlData = (await this.readFile(uri)).toString();
+    var ableton = AbletonParser.parse(xmlData);
 
-	const result = `
-		<!DOCTYPE html>
-		<html lang="en">
-		<head>
-			<meta charset="UTF-8">
-			<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src ${webview.cspSource} blob:; style-src ${webview.cspSource}; script-src 'nonce-${nonce}';">
-			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    const result = `
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src ${webview.cspSource} blob:; style-src ${webview.cspSource}; script-src 'nonce-${nonce}';">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-			<link href="${simpleTreeStyleUri}" rel="stylesheet" />
-			<title>Raw Content</title>
-		</head>
-		<body>
-			<ul id="myUL">
-				<li><span class="caret">${ableton.creator}</span>
-				  <ul class="nested">
-					  ${ableton.tracksToHtmlList()}
-					</ul>
-				</li>
-			</ul>
+        <link href="${simpleTreeStyleUri}" rel="stylesheet" />
+        <title>Raw Content</title>
+      </head>
+      <body>
+        <ul id="myUL">
+          <li><span class="caret">${ableton.creator}</span>
+            <ul class="nested">
+              ${ableton.tracksToHtmlList()}
+            </ul>
+          </li>
+        </ul>
 
-			<script nonce="${nonce}">
-				var toggler = document.getElementsByClassName("caret");
-				var i;
-				
-				for (i = 0; i < toggler.length; i++) {
-					toggler[i].addEventListener("click", function() {
-						this.parentElement.querySelector(".nested").classList.toggle("active");
-						this.classList.toggle("caret-down");
-					});
-          toggler[i].click.apply(toggler[i]);          
-				}
-       		
-			</script>
+        <script nonce="${nonce}">
+          var toggler = document.getElementsByClassName("caret");
+          var i;
+          
+          for (i = 0; i < toggler.length; i++) {
+            toggler[i].addEventListener("click", function() {
+              this.parentElement.querySelector(".nested").classList.toggle("active");
+              this.classList.toggle("caret-down");
+            });
+            toggler[i].click.apply(toggler[i]);          
+          }
+            
+        </script>
 
-		</body>
-		</html>`;
+      </body>
+      </html>`;
+
 		return result;
   }
 
