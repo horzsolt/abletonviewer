@@ -6,65 +6,66 @@
     <!--
     Use a content security policy to only allow loading images from https or from our extension directory,
     and only allow scripts that have a specific nonce.
-    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src https://*.vscode-webview.net blob:; style-src https://*.vscode-webview.net; script-src 'nonce-VwChlUOh0Otq0I5ZqHFS5yufyIQz4F0k';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src ${webview.cspSource} blob:; style-src ${webview.cspSource}; script-src 'nonce-${nonce}';">
     -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link href="media/style.min.css" rel="stylesheet" />
+    <link href="simpleTree.css" rel="stylesheet" />
     <title>Raw Content</title>
 </head>
 <body>
-    <div id="tree"></div>
-    
-    <script >
-        //import { VanillaTreeView } from 'media/treeview.vanilla.js';
-        document.write('VS CODE1');	
+    <ul id="myUL">
+        <li><span id="root" class="caret">Ableton</span>
+            <ul class="nested">
+                <li><span id="firstTrack" class="caret">0.</span>
+                    <ul class='nested'>
+                        <li>1A - 132 - Childov - Go Original Mix_pn</li>
+                        <li>2A - 130 - Oxyd (France) - Makossa [Dub Mix]_pn</li>
+                        <li>4A - 127 - Matt Sassari - Honda Original Mix Pn</li>
+                        <li>4A - 132 - Eric Sneo - Burning Angels (Rework Remastered) - 6cd74b79_pn</li>
+                        <li>6A - 130 - Dave Dust - Sky Ghosts [Raw Vip Mix]_pn</li>
+                        <li>7A - 130 - Sam Wolfe Rebel Boy - Black Veins Original Mix_pn</li>
+                        <li>11A - 131 - Roger Lavelle - Nebula Original Mix pn</li>
+                    </ul>
+                </li>
+                    <li><span id="secondTrack" class="caret">1.</span>
+                    <ul class='nested'>
+                        <li>1A - 132 - Childov - Go Original Mix_pn</li>
+                        <li>2A - 130 - Oxyd (France) - Makossa [Dub Mix]_pn</li>
+                        <li>4A - 127 - Matt Sassari - Honda Original Mix Pn</li>
+                        <li>4A - 132 - Eric Sneo - Burning Angels (Rework Remastered) - 6cd74b79_pn</li>
+                        <li>6A - 130 - Dave Dust - Sky Ghosts [Raw Vip Mix]_pn</li>
+                        <li>7A - 130 - Sam Wolfe Rebel Boy - Black Veins Original Mix_pn</li>
+                        <li>11A - 131 - Roger Lavelle - Nebula Original Mix pn</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul> 
 
-        /*try {
-            document.write('VS CODE1');	
-        } catch {
-            notesContainer.style.display = 'none';
-            errorContainer.innerText = 'Error: Document is not valid json';
-            errorContainer.style.display = '';
-            document.write('ERRORR');	
-        }*/
+    <script>
+        var toggler = document.getElementsByClassName("caret");
+        var i;
         
-        document.write('VS CODE2');
-    /*let tree = new VanillaTreeView(document.getElementById('tree'), {
-        provider: {
-            async getChildren(id) {
-                if (!id) {
-                    return [
-                        { id: 'p1', label: 'Parent #1', icon: { classes: ['far', 'fa-folder'] }, state: 'collapsed' },
-                        { id: 'p2', label: 'Parent #2', icon: { classes: ['far', 'fa-folder'] }, state: 'expanded' }
-                    ];
-                } else {
-                    await new Promise((resolve, reject) => setTimeout(resolve, 1000));
-                    switch (id) {
-                        case 'p1':
-                            return [
-                                { id: 'c1', label: 'Child #1', icon: { classes: ['far', 'fa-file'] }, state: 'collapsed' },
-                                { id: 'c2', label: 'Child #2', icon: { classes: ['far', 'fa-file'] } }
-                            ];
-                        case 'p2':
-                            return [
-                                { id: 'c3', label: 'Child #3', icon: { src: '/examples/thumbs-up.png' } },
-                                { id: 'c4', label: 'Child #4', icon: { classes: ['far', 'fa-file'] } }
-                            ];
-                        case 'c1':
-                            return [
-                                { id: 'g1', label: 'Grandchild #1', icon: { classes: ['far', 'fa-clock'] } }
-                            ];
-                        default:
-                            return [];
-                    }
-                }
-            }
+        for (i = 0; i < toggler.length; i++) {
+            alert(toggler[i].id + " 11111111111");            
+            toggler[i].addEventListener("click", function() {
+                this.parentElement.querySelector(".nested").classList.toggle("active");
+                this.classList.toggle("caret-down");
+            });
         }
-    });*/
-</script>
 
-<script > document.write('csoszme')</script>	
+        function openTree() {
+            for (i = 0; i < toggler.length; i++) {
+                alert(toggler[i].id + " 2222222222222");                
+                toggler[i].click.apply(toggler[i]);
+            };
+        }
 
-</body>
+        window.addEventListener('load', function () {
+             openTree();
+        })        
+    </script>
+
+</body">
 </html>

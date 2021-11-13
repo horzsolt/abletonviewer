@@ -2,7 +2,7 @@ import { promisify, TextDecoder } from "util";
 import * as vscode from "vscode";
 import { Disposable } from "vscode";
 import { getNonce } from './util';
-import Ableton from './ableton';
+import Ableton from './abletonTracks';
 import AbletonParser from "./abletonParser";
 const fs = require("fs");
 
@@ -41,12 +41,6 @@ class AlsDocument extends Disposable implements vscode.CustomDocument {
 		<html lang="en">
 		<head>
 			<meta charset="UTF-8">
-
-			<!--
-			Use a content security policy to only allow loading images from https or from our extension directory,
-			and only allow scripts that have a specific nonce.
-			<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src ${webview.cspSource} blob:; style-src ${webview.cspSource}; script-src 'nonce-${nonce}';">
-			-->
 			<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src ${webview.cspSource} blob:; style-src ${webview.cspSource}; script-src 'nonce-${nonce}';">
 			<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -56,26 +50,11 @@ class AlsDocument extends Disposable implements vscode.CustomDocument {
 		<body>
 			<ul id="myUL">
 				<li><span class="caret">${ableton.creator}</span>
-				<ul class="nested">
-					${ableton.tracksToHtmlList()}
-					<li>Coffee</li>
-					<li><span class="caret">Tea</span>
-					<ul class="nested">
-						<li>Black Tea</li>
-						<li>White Tea</li>
-						<li><span class="caret">Green Tea</span>
-						<ul class="nested">
-							<li>Sencha</li>
-							<li>Gyokuro</li>
-							<li>Matcha</li>
-							<li>Pi Lo Chun</li>
-						</ul>
-						</li>
+				  <ul class="nested">
+					  ${ableton.tracksToHtmlList()}
 					</ul>
-					</li>
-				</ul>
 				</li>
-			</ul> 
+			</ul>
 
 			<script nonce="${nonce}">
 				var toggler = document.getElementsByClassName("caret");
@@ -86,7 +65,17 @@ class AlsDocument extends Disposable implements vscode.CustomDocument {
 						this.parentElement.querySelector(".nested").classList.toggle("active");
 						this.classList.toggle("caret-down");
 					});
-				} 		
+				}
+
+        function openTree() {
+          for (i = 0; i < toggler.length; i++) {
+              toggler[i].click.apply(toggler[i]);
+          };
+        }
+
+        window.addEventListener('load', function () {
+            openTree();
+        })            		
 			</script>
 
 		</body>
