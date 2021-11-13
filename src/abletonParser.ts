@@ -15,7 +15,6 @@ export default class AbletonParser {
                 var trackList = Array<string>();
 
                 audioTrack.forEach(function (item: any, index: any) {
-                    //console.log(item.Name[0].$.Value, index);
                     trackList.push(item.Name[0].$.Value);
                 });
 

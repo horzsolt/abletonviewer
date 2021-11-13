@@ -26,10 +26,7 @@ class AlsDocument extends Disposable implements vscode.CustomDocument {
   
   public static async displayOriginalContent(uri: vscode.Uri, webview: vscode.Webview, context: vscode.ExtensionContext): Promise<string> {
 
-	const commonScriptUri = webview.asWebviewUri(vscode.Uri.joinPath(
-		context.extensionUri, 'media', 'common.js'));
-
-	const simpleTreeStyleUri = webview.asWebviewUri(vscode.Uri.joinPath(
+		const simpleTreeStyleUri = webview.asWebviewUri(vscode.Uri.joinPath(
 		context.extensionUri, 'media', 'simpleTree.css'));		
 
 	const nonce = getNonce();
@@ -65,17 +62,9 @@ class AlsDocument extends Disposable implements vscode.CustomDocument {
 						this.parentElement.querySelector(".nested").classList.toggle("active");
 						this.classList.toggle("caret-down");
 					});
+          toggler[i].click.apply(toggler[i]);          
 				}
-
-        function openTree() {
-          for (i = 0; i < toggler.length; i++) {
-              toggler[i].click.apply(toggler[i]);
-          };
-        }
-
-        window.addEventListener('load', function () {
-            openTree();
-        })            		
+       		
 			</script>
 
 		</body>
