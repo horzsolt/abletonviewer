@@ -1,42 +1,77 @@
-ul, #myUL
-{
-    list-style-type: none;
+.caret {
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
- 
-#myUL
-{
-    margin: 0;
-    padding: 0;
+
+.caret::before {
+  content: "\25B6";
+  color: rgb(156, 151, 151);
+  display: inline-block;
+  margin-right: 6px;
 }
- 
-.caret
-{
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+
+.caret-down::before {
+  transform: rotate(90deg);
 }
- 
-.caret::before
-{
-    content: "+";
-    color: black;
-    display: inline-block;
-    margin-right: 6px;
+
+.nested {
+  display: none;
 }
- 
-.check-box::before
-{
-    content: "-";
+
+.active {
+  display: block;
 }
- 
-.nested
-{
-    display: none;
+
+.tree,
+.tree ul {
+  margin: 0 0 0 1em;
+  padding: 0;
+  list-style: none;
+  color: rgb(245, 10, 10);
+  position: relative;
 }
- 
-.active
-{
-    display: block;
+
+.tree ul {
+  margin-left: 0.5em;
+}
+
+.tree:before,
+.tree ul:before {
+  content: "";
+  display: block;
+  width: 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  border-left: 1px solid;
+}
+
+.tree li {
+  margin: 0;
+  padding: 0 1.5em;
+  line-height: 2em;
+  position: relative;
+  color: rgb(142, 182, 228);
+}
+
+.tree li:before {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 0;
+  border-top: 1px solid;
+  margin-top: -1px;
+  position: absolute;
+  top: 1em;
+  left: 0;
+}
+
+.tree li:last-child:before {
+  background: white;
+  height: auto;
+  top: 1em;
 }

@@ -44,7 +44,7 @@ class AlsDocument extends Disposable implements vscode.CustomDocument {
         <title>Raw Content</title>
       </head>
       <body>
-        <ul id="myUL">
+        <ul class="tree">
           <li><span class="caret">${ableton.creator}</span>
             <ul class="nested">
               ${ableton.tracksToHtmlList()}
