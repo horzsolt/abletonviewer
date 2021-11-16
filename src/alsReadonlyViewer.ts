@@ -47,7 +47,8 @@ class AlsDocument extends Disposable implements vscode.CustomDocument {
         <ul class="tree">
           <li><span class="caret">${ableton.creator}</span>
             <ul class="nested">
-              ${ableton.tracksToHtmlList()}
+              ${ableton.audioTrack.toHtmlList()}
+              ${ableton.masterTrack.toHtmlList()}
             </ul>
           </li>
         </ul>
