@@ -28,7 +28,7 @@ export class AudioTrack {
         var result = "";
 
         this.tracks.forEach((value: string[], key: string) => {
-            result += "<li><span class='caret'>" + key + " track:</span>";
+            result += "<li><span class='caret'>" + key + " Audiotrack:</span>";
             result += "<ul class='nested'>";
 
             value.forEach(element => {

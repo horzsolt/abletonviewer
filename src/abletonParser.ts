@@ -20,6 +20,8 @@ export default class AbletonParser {
                 var audioTrack = result.Ableton.LiveSet[0].Tracks[0].AudioTrack[i].DeviceChain[0].MainSequencer[0].Sample[0].ArrangerAutomation[0].Events[0].AudioClip;
                 var trackList = Array<string>();
 
+                //https://toolstud.io/music/bpm.php?bpm=60&bpm_unit=4%2F4
+
                 audioTrack?.forEach(function (item: any, index: any) {
                     trackList.push("[ID: " + item.$.Id + " Duration: " + item.CurrentStart[0].$.Value + " - " + item.CurrentEnd[0].$.Value + "] " + item.Name[0].$.Value);
                 });
